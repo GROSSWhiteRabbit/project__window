@@ -1,5 +1,6 @@
+
 const tabs = ()=> {
-    function bindTab(btnsSelector, btnsParentSelector, constentSelector, activeClass) {
+    function bindTab(btnsSelector, btnsParentSelector, constentSelector, activeClass, inline) {
         const tabBtns = document.querySelectorAll(btnsSelector),
                 tabBtnsParent = document.querySelector(btnsParentSelector),
                 tabContent =  document.querySelectorAll(constentSelector);
@@ -25,6 +26,7 @@ const tabs = ()=> {
                 if(activeClass) {
                     item.classList.remove(activeClass);
                 }
+                // item.style.transition = 'all .3s';
                 
             });
 
@@ -34,14 +36,26 @@ const tabs = ()=> {
            
 
             tabContent.forEach((item)=> {
-                item.classList.remove('show');
-                item.classList.add('hide');
+                
+
+                if(inline) {
+                    item.style.display = '';
+                } else {
+                    item.classList.remove('show');
+                    item.classList.add('hide');
+                }
             });
 
+            
 
-            tabContent[namberTab].classList.remove('hide');
-            tabContent[namberTab].classList.add('show');
+            
 
+            if(inline) {
+                tabContent[namberTab].style.display = 'inline';
+            } else {
+                tabContent[namberTab].classList.remove('hide');
+                tabContent[namberTab].classList.add('show');
+            }
         }
 
         showTabByBtn(tabBtns[0]);
@@ -50,7 +64,8 @@ const tabs = ()=> {
     }
     bindTab('.glazing_block', '.glazing_slider', '.glazing_content', 'active');
     bindTab('.decoration_item .no_click', '.decoration_slider', '.decoration_content > div > div', 'after_click');
-
+    bindTab('.balcon_icons_img', '.balcon_icons', '.big_img  img', 'do_image_more', true);
 };
 
 export default tabs;
+

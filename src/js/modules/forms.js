@@ -1,4 +1,5 @@
- const forms  = ()=>{
+
+ const forms  = ( modalState)=>{
     function bindForm(form) {
         const massegeStatus = {
             loading: 'Loading...',
@@ -7,7 +8,7 @@
         };
 
         form.user_phone.addEventListener('input', ()=>{
-            form.user_phone.value =  form.user_phone.value.replace(/\D/, '');
+            form.user_phone.value =  form.user_phone.value.replace(/\D/g, '');
         });
 
         form.addEventListener('submit', (e)=> {
@@ -15,6 +16,9 @@
                 const data = new FormData(form),
                 textStatus = document.createElement('p');
                 textStatus.classList.add('status');
+                if (form.getAttribute('id') === 'popup_form' ) {
+                    data.set('window', modalState.formWindow);
+                }
     
     
                 form.append(textStatus);
