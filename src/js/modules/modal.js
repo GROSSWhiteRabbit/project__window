@@ -1,4 +1,27 @@
 
+    function closeModal(Modal) {
+        if(typeof(Modal)== 'string'){      
+            Modal = document.querySelector(Modal);
+        }
+
+        Modal.classList.remove('show');
+        Modal.classList.add('hide');
+        document.body.classList.remove('modal-open');
+        document.body.style.marginRight = '';
+    }
+
+    function showModal(Modal) {
+        if(typeof(Modal)== 'string'){      
+            Modal = document.querySelector(Modal);
+        }   
+        Modal.classList.remove('hide');
+        Modal.classList.add('show');
+        document.body.style.marginRight = `${window.innerWidth - document.body.clientWidth}px`;
+        document.body.classList.add('modal-open');
+        
+
+    }
+
 const modals = ()=> {
 
     function bindModal(selectorModal, selectorTriggers, selecttorClose, closeClickOverlay = true, requiredInputSeklector = false){
@@ -74,23 +97,7 @@ const modals = ()=> {
 
     }
 
-    function closeModal(Modal) {
-        if(typeof(Modal)== 'string'){      
-            Modal = document.querySelector(Modal);
-        }
 
-        Modal.classList.remove('show');
-        Modal.classList.add('hide');
-        document.body.classList.remove('modal-open');
-    }
-
-    function showModal(selectorModal) {
-        const elModal = document.querySelector(selectorModal);
-        elModal.classList.remove('hide');
-        elModal.classList.add('show');
-        document.body.classList.add('modal-open');
-
-    }
 
 
     // setTimeout(() => {
@@ -111,3 +118,4 @@ const modals = ()=> {
 
 };
 export default modals;
+export {showModal, closeModal};
