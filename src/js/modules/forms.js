@@ -23,8 +23,12 @@
     
                 form.append(textStatus);
                 textStatus.textContent =  massegeStatus.loading;
-                postDate('http://localhost:3000/POST', JSON.stringify(Object.fromEntries(data.entries())))
-                .then(function() {
+                postDate(
+                    // 'http://localhost:3000/POST',
+                    'assets/server.php',
+                    JSON.stringify(Object.fromEntries(data.entries())))
+                .then(function(res) {
+                    console.log(res)
                     textStatus.textContent =  massegeStatus.ok;
                 })
                 .catch(()=> {
@@ -52,7 +56,7 @@
                 console.error(`POST Erorr url:${url}  status:${response.status}`);
             }
                 console.log(response);
-            return await response.json();
+            return await response.text();
             
         }
 
